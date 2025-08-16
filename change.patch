@@ -1,0 +1,19 @@
+diff --git a/index.html b/index.html
+index 5e5e47a..2b8efdf 100644
+--- a/index.html
++++ b/index.html
+@@ -1,8 +1,8 @@
+ <!doctype html>
+-<html>
++<html lang="zh-CN">
+ <head>
+   <meta charset="utf-8">
+-  <title>Smoke Test</title>
++  <title>尚舟测试页面</title>
+   <meta name="viewport" content="width=device-width,initial-scale=1">
+ </head>
+ <body>
+-<h1>Hello CodeSandbox + GitHub 🚀</h1>
++<h1>Hello 尚舟 🚀</h1>
+   <button onclick="alert('OK')">点击测试</button>
+ </body>
