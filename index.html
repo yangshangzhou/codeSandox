@@ -2,11 +2,22 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <title>尚舟测试页面1111</title>
+  <title>尚舟测试页面</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Hello 尚舟 🚀1111</h1>
-  <button onclick="alert('OK')">点击测试</button>
+  <main class="card">
+    <h1>Hello 尚舟 🚀</h1>
+    <p>这是一键脚本演示：一次粘贴，自动改文件、跑预览、推分支。</p>
+    <button id="btn">点我测试</button>
+    <pre id="log"></pre>
+  </main>
+  <script>
+    const log = (t) => (document.getElementById('log').textContent += t + '\n');
+    document.getElementById('btn').addEventListener('click', async () => {
+      log('按钮被点击 ✔ ' + new Date().toLocaleString());
+    });
+  </script>
 </body>
 </html>
