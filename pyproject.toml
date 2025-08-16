@@ -1,0 +1,16 @@
+[project]
+name = "quantlab"
+version = "0.1.0"
+description = "Macro cross-asset quant research and trading framework"
+authors = [{name="Your Name", email="you@example.com"}]
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "pydantic",
+    "fastapi",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
