@@ -9,6 +9,8 @@ dependencies = [
     "scikit-learn",
     "pydantic",
     "fastapi",
+    "yfinance",
+    "matplotlib",
 ]
 
 [build-system]
