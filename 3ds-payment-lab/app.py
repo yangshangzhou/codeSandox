@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from datetime import datetime
+import os
 import uuid
 
 app = Flask(__name__)
@@ -9,7 +10,7 @@ logs = []
 def log(msg):
     line = f"[{datetime.now().strftime('%H:%M:%S')}] {msg}"
     logs.append(line)
-    print(line)
+    print(line, flush=True)
 
 @app.get('/')
 def index():
@@ -21,7 +22,7 @@ def bank():
 
 @app.post('/api/create-payment')
 def create_payment():
-    data = request.get_json()
+    data = request.get_json() or {}
     if data.get('card_number') != '4111 1111 1111 1111':
         return jsonify({'error': '仅允许使用实验卡：4111 1111 1111 1111'}), 400
     tx = str(uuid.uuid4())[:8]
@@ -31,9 +32,19 @@ def create_payment():
     log(f'Challenge sent to simulated Bank App: tx={tx}')
     return jsonify({'transaction_id': tx, 'status': 'requires_action'})
 
+@app.get('/api/transaction/<tx>')
+def transaction(tx):
+    if tx not in transactions:
+        return jsonify({'error': 'not found'}), 404
+    return jsonify(transactions[tx])
+
+@app.get('/api/logs')
+def get_logs():
+    return jsonify(logs[-50:])
+
 @app.post('/api/challenge')
 def challenge():
-    data = request.get_json()
+    data = request.get_json() or {}
     tx, decision = data.get('transaction_id'), data.get('decision')
     if tx not in transactions:
         return jsonify({'error': 'not found'}), 404
@@ -50,5 +61,6 @@ def challenge():
     return jsonify(transactions[tx])
 
 if __name__ == '__main__':
-    log('Demo server started. No real payment network is connected.')
-    app.run(host='127.0.0.1', port=5000, debug=False)
+    port = int(os.environ.get('PORT', '5000'))
+    log(f'Demo server started on port {port}. No real payment network is connected.')
+    app.run(host='0.0.0.0', port=port, debug=False)
