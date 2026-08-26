@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: hualong-ai-assistant
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./public
