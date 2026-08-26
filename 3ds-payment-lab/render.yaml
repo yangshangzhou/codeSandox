@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: 3ds-payment-lab
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./public
